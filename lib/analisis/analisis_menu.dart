@@ -105,18 +105,21 @@ class AnalisisMenu extends StatelessWidget {
                         child: Expanded(
                             child: RichText(
                                 text: TextSpan(
-                                    children:
-                                        _analisisMenuController.result.value ==
-                                                null
-                                            ? [const TextSpan(text: "-")]
-                                            : _analisisMenuController
-                                                .result.value?.zresult
-                                                ?.map((e) => TextSpan(
-                                                    text: "${e.teks} ",
-                                                    style: TextStyle(
-                                                        color: switchColor(
-                                                            e.label ?? "-"))))
-                                                .toList())))),
+                                    children: _analisisMenuController
+                                                .result.value ==
+                                            null
+                                        ? [const TextSpan(text: "-")]
+                                        : _analisisMenuController
+                                            .result.value?.zresult
+                                            ?.map((e) => TextSpan(
+                                                text: "${e.teks} ",
+                                                style: TextStyle(
+                                                    color: switchColor(
+                                                        e.label ?? "-",
+                                                        _analisisMenuController
+                                                            .selectedAlgorithm
+                                                            .value))))
+                                            .toList())))),
                   ),
                 ),
                 const SizedBox(
@@ -160,7 +163,10 @@ class AnalisisMenu extends StatelessWidget {
                                         Row(
                                           children: [
                                             CircleAvatar(
-                                              backgroundColor: switchColor(e),
+                                              backgroundColor: switchColor(
+                                                  e,
+                                                  _analisisMenuController
+                                                      .selectedAlgorithm.value),
                                             ),
                                             const SizedBox(
                                               width: 8,

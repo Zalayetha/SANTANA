@@ -20,28 +20,45 @@ TextTheme createTextTheme(
   return textTheme;
 }
 
-Color switchColor(String color) {
+Color switchColor(String color, String algoritma) {
   Color? result;
-  switch (color) {
-    case 'B-Bencana':
-      result = appColorMap[AppColors.bBencana];
-      break;
-    case 'I-Bencana':
-      result = appColorMap[AppColors.iBencana];
-    case 'B-Lokasi':
-      result = appColorMap[AppColors.bLokasi];
-    case 'I-Lokasi':
-      result = appColorMap[AppColors.iLokasi];
-    case 'B-Waktu':
-      result = appColorMap[AppColors.bWaktu];
-    case 'I-Waktu':
-      result = appColorMap[AppColors.iWaktu];
-    case 'B-Dampak':
-      result = appColorMap[AppColors.bDampak];
-    case 'I-Dampak':
-      result = appColorMap[AppColors.iDampak];
-    default:
-      result = appColorMap[AppColors.iDampak];
+  if (algoritma == "Statistik") {
+    switch (color) {
+      case 'B-Bencana':
+        result = appColorMap[AppColors.bBencana];
+        break;
+      case 'I-Bencana':
+        result = appColorMap[AppColors.iBencana];
+      case 'B-Lokasi':
+        result = appColorMap[AppColors.bLokasi];
+      case 'I-Lokasi':
+        result = appColorMap[AppColors.iLokasi];
+      case 'B-Waktu':
+        result = appColorMap[AppColors.bWaktu];
+      case 'I-Waktu':
+        result = appColorMap[AppColors.iWaktu];
+      case 'B-Dampak':
+        result = appColorMap[AppColors.bDampak];
+      case 'I-Dampak':
+        result = appColorMap[AppColors.iDampak];
+      default:
+        result = appColorMap[AppColors.iDampak];
+    }
+  } else if (algoritma == "Aturan") {
+    switch (color) {
+      case "Bencana":
+        result = appColorMap[AppColors.bBencana];
+        break;
+      case "Lokasi":
+        result = appColorMap[AppColors.bLokasi];
+      case "Waktu":
+        result = appColorMap[AppColors.bWaktu];
+      case "Dampak":
+        result = appColorMap[AppColors.bDampak];
+      default:
+        result = Colors.black;
+    }
   }
-  return result ?? Colors.white;
+
+  return result ?? Colors.black;
 }
