@@ -1,6 +1,6 @@
 # sistem_analisis_teks_bencana
 
-A new Flutter project.
+Application that can classify text to identify the type of disaster, the location of the disaster, the impact of the disaster, and the time of the disaster
 
 ## Getting Started
 
