@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:sistem_analisis_teks_bencana/analisis/algorithm_label.dart';
 import 'package:sistem_analisis_teks_bencana/analisis/analisis_menu_controller.dart';
 import 'package:sistem_analisis_teks_bencana/utils.dart';
 import 'package:sistem_analisis_teks_bencana/widget/colors.dart';
@@ -11,13 +12,13 @@ class AnalisisMenu extends StatelessWidget {
       Get.put(AnalisisMenuController());
   final TextEditingController _textEditingController = TextEditingController();
 
+  // function to handle algorithm value from dropdown
+  void _handleAlgorithmSelected(AlgorithmLabel label) {
+    _analisisMenuController.selectedAlgorithm.value = label.label;
+  }
+
   @override
   Widget build(BuildContext context) {
-    String combinedText = _analisisMenuController.result.value?.zresult
-            ?.map((e) => e.teks ?? "")
-            .join(" ") ??
-        "-";
-    TextEditingController hasil = TextEditingController(text: combinedText);
     return Obx(() => Scaffold(
             body: SafeArea(
                 child: Padding(
@@ -33,10 +34,12 @@ class AnalisisMenu extends StatelessWidget {
                     style: Theme.of(context).textTheme.headlineSmall,
                   ),
                 ),
-                const Center(
+                Center(
                   child: Padding(
-                    padding: EdgeInsets.symmetric(vertical: 24.0),
-                    child: CustomDropdownAlgorithm(),
+                    padding: const EdgeInsets.symmetric(vertical: 24.0),
+                    child: CustomDropdownAlgorithm(
+                      onAlgorithmSelected: _handleAlgorithmSelected,
+                    ),
                   ),
                 ),
                 Padding(
@@ -59,8 +62,21 @@ class AnalisisMenu extends StatelessWidget {
                     children: [
                       Expanded(
                         child: ElevatedButton(
-                            onPressed: () async => await _analisisMenuController
-                                .analisisStatistik(_textEditingController.text),
+                            onPressed: () async {
+                              debugPrint(_analisisMenuController
+                                  .selectedAlgorithm.value);
+                              if (_analisisMenuController
+                                      .selectedAlgorithm.value ==
+                                  "Statistik") {
+                                await _analisisMenuController.analisisStatistik(
+                                    _textEditingController.text);
+                              } else if (_analisisMenuController
+                                      .selectedAlgorithm.value ==
+                                  "Aturan") {
+                                await _analisisMenuController
+                                    .analisisRule(_textEditingController.text);
+                              }
+                            },
                             child: const Text("Analisis")),
                       ),
                     ],

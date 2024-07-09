@@ -9,13 +9,21 @@ class AnalisisMenuController extends GetxController {
   final Rx<AnalisisResponse?> resultRule = Rx<AnalisisResponse?>(null);
   final RxBool isLoading = false.obs;
   final RxList<String> labelList = <String>[].obs;
+  final RxString selectedAlgorithm = "".obs;
+
+  @override
+  void onInit() {
+    super.onInit();
+    selectedAlgorithm.value = "Statistik";
+  }
+
   analisisStatistik(String teks) async {
     try {
       isLoading.value = true;
       AnalisisResponse? data = await repo.getClassifyStatistic(teks);
       if (data != null) {
         result.value = data;
-        getLabel();
+        getLabel(result.value);
         if (kDebugMode) {
           debugPrint(result.value!.zresult?[0].teks ?? "");
         }
@@ -39,7 +47,7 @@ class AnalisisMenuController extends GetxController {
       AnalisisResponse? data = await repo.getClassifyRule(teks);
       if (data != null) {
         resultRule.value = data;
-        getLabel();
+        getLabel(resultRule.value);
         if (kDebugMode) {
           debugPrint(resultRule.value!.zresult?[0].teks ?? "");
         }
@@ -57,9 +65,9 @@ class AnalisisMenuController extends GetxController {
     }
   }
 
-  getLabel() {
+  getLabel(label) {
     List<String> tempLabel = [];
-    for (var data in result.value?.zresult ?? []) {
+    for (var data in label.zresult ?? []) {
       tempLabel.add(data.label);
     }
 

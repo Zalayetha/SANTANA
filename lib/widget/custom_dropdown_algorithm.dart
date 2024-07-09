@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:sistem_analisis_teks_bencana/analisis/algorithm_label.dart';
 
 class CustomDropdownAlgorithm extends StatefulWidget {
   const CustomDropdownAlgorithm({
     super.key,
+    required this.onAlgorithmSelected,
   });
-  // ignore: prefer_typing_uninitialized_variables
-  // final GetxController controller;
 
+  final void Function(AlgorithmLabel) onAlgorithmSelected;
   @override
   State<CustomDropdownAlgorithm> createState() =>
       _CustomDropdownAlgorithmState();
@@ -28,6 +29,9 @@ class _CustomDropdownAlgorithmState extends State<CustomDropdownAlgorithm> {
       onSelected: (AlgorithmLabel? label) {
         setState(() {
           selectedAlgorithm = label;
+          if (label != null) {
+            widget.onAlgorithmSelected(label);
+          }
         });
       },
       dropdownMenuEntries: AlgorithmLabel.values
