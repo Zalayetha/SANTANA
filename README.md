@@ -1,16 +1,9 @@
-# sistem_analisis_teks_bencana
+# SANTANA (Sistem Analisis Teks Bencana Alam)
 
-A new Flutter project.
+SANTANA is an innovative application designed to classify text to identify key aspects of natural disasters. Utilizing advanced machine learning algorithms, SANTANA accurately determines the type of disaster, its location, the impact, and the time it occurred. This powerful tool aids in real-time disaster response and management by providing precise information extracted from various text sources. By streamlining the analysis process, SANTANA enhances situational awareness, enabling quicker and more effective decision-making to mitigate the effects of natural disasters. SANTANA empowers organizations and responders with the critical insights needed to improve disaster preparedness and response strategies.
 
-## Getting Started
+# Feature
 
-This project is a starting point for a Flutter application.
+- 🔍 Classify texts to identify the main aspects of natural disasters such as the type of disaster, its location, impact, and time of occurrence.
 
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+# Preview
