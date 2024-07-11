@@ -47,6 +47,9 @@ class AnalisisMenuController extends GetxController {
       AnalisisResponse? data = await repo.getClassifyRule(teks);
       if (data != null) {
         resultRule.value = data;
+        if (kDebugMode) {
+          print(resultRule.value?.zresult?.first.label);
+        }
         getLabel(resultRule.value);
         if (kDebugMode) {
           debugPrint(resultRule.value!.zresult?[0].teks ?? "");
@@ -70,7 +73,9 @@ class AnalisisMenuController extends GetxController {
     for (var data in label.zresult ?? []) {
       tempLabel.add(data.label);
     }
-
+    if (kDebugMode) {
+      debugPrint(tempLabel.toString());
+    }
     labelList.value = tempLabel.toSet().toList();
   }
 }

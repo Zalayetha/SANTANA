@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:sistem_analisis_teks_bencana/analisis/algorithm_label.dart';
 
