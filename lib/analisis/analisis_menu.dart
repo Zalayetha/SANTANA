@@ -15,8 +15,8 @@ class AnalisisMenu extends StatelessWidget {
   // function to handle algorithm value from dropdown
   void _handleAlgorithmSelected(AlgorithmLabel label) {
     _analisisMenuController.isLoading.value = true;
-    _analisisMenuController.selectedAlgorithm.value = label.label;
-    Future.delayed(const Duration(seconds: 3), () {
+    _analisisMenuController.selectedAlgorithm.value = label;
+    Future.delayed(const Duration(milliseconds: 1500), () {
       _analisisMenuController.result.value = null;
       _analisisMenuController.isLoading.value = false;
     });
@@ -43,6 +43,9 @@ class AnalisisMenu extends StatelessWidget {
                 child: Padding(
                   padding: const EdgeInsets.symmetric(vertical: 24.0),
                   child: CustomDropdownAlgorithm(
+                    initialSelection:
+                        _analisisMenuController.selectedAlgorithm.value ??
+                            AlgorithmLabel.statistik,
                     onAlgorithmSelected: _handleAlgorithmSelected,
                   ),
                 ),
@@ -69,16 +72,14 @@ class AnalisisMenu extends StatelessWidget {
                       flex: 1,
                       child: ElevatedButton(
                           onPressed: () async {
-                            debugPrint(_analisisMenuController
-                                .selectedAlgorithm.value);
                             if (_analisisMenuController
                                     .selectedAlgorithm.value ==
-                                "Statistik") {
+                                AlgorithmLabel.statistik) {
                               await _analisisMenuController.analisisStatistik(
                                   _textEditingController.text);
                             } else if (_analisisMenuController
                                     .selectedAlgorithm.value ==
-                                "Aturan") {
+                                AlgorithmLabel.aturan) {
                               await _analisisMenuController
                                   .analisisRule(_textEditingController.text);
                             }
@@ -139,8 +140,10 @@ class AnalisisMenu extends StatelessWidget {
                                                             color: switchColor(
                                                                 e.label ?? "-",
                                                                 _analisisMenuController
-                                                                    .selectedAlgorithm
-                                                                    .value))))
+                                                                        .selectedAlgorithm
+                                                                        .value ??
+                                                                    AlgorithmLabel
+                                                                        .statistik))))
                                                     .toList()))),
                               ),
                             ),
@@ -193,8 +196,10 @@ class AnalisisMenu extends StatelessWidget {
                                                           backgroundColor: switchColor(
                                                               e,
                                                               _analisisMenuController
-                                                                  .selectedAlgorithm
-                                                                  .value),
+                                                                      .selectedAlgorithm
+                                                                      .value ??
+                                                                  AlgorithmLabel
+                                                                      .statistik),
                                                         ),
                                                         const SizedBox(
                                                           width: 8,

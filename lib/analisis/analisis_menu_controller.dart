@@ -1,5 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
+import 'package:sistem_analisis_teks_bencana/analisis/algorithm_label.dart';
 import 'package:sistem_analisis_teks_bencana/analisis/analisis_response.dart';
 import 'package:sistem_analisis_teks_bencana/repo/repository.dart';
 
@@ -8,12 +9,12 @@ class AnalisisMenuController extends GetxController {
   final Rx<AnalisisResponse?> result = Rx<AnalisisResponse?>(null);
   final RxBool isLoading = false.obs;
   final RxList<String> labelList = <String>[].obs;
-  final RxString selectedAlgorithm = "".obs;
+  final Rx<AlgorithmLabel?> selectedAlgorithm = Rx<AlgorithmLabel?>(null);
 
   @override
   void onInit() {
     super.onInit();
-    selectedAlgorithm.value = "Statistik";
+    selectedAlgorithm.value = AlgorithmLabel.statistik;
   }
 
   analisisStatistik(String teks) async {

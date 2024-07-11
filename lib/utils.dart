@@ -1,6 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:sistem_analisis_teks_bencana/analisis/algorithm_label.dart';
 import 'package:sistem_analisis_teks_bencana/widget/colors.dart';
 
 TextTheme createTextTheme(
@@ -21,12 +22,12 @@ TextTheme createTextTheme(
   return textTheme;
 }
 
-Color switchColor(String color, String algoritma) {
+Color switchColor(String color, AlgorithmLabel algoritma) {
   Color? result;
   if (kDebugMode) {
     debugPrint("algoritma : $algoritma");
   }
-  if (algoritma == "Statistik") {
+  if (algoritma == AlgorithmLabel.statistik) {
     switch (color) {
       case 'B-Bencana':
         result = appColorMap[AppColors.bBencana];
@@ -48,7 +49,7 @@ Color switchColor(String color, String algoritma) {
       default:
         result = appColorMap[AppColors.iDampak];
     }
-  } else if (algoritma == "Aturan") {
+  } else if (algoritma == AlgorithmLabel.aturan) {
     switch (color) {
       case "Bencana":
         result = appColorMap[AppColors.bBencana];

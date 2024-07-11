@@ -6,9 +6,11 @@ class CustomDropdownAlgorithm extends StatefulWidget {
   const CustomDropdownAlgorithm({
     super.key,
     required this.onAlgorithmSelected,
+    required this.initialSelection,
   });
 
   final void Function(AlgorithmLabel) onAlgorithmSelected;
+  final AlgorithmLabel initialSelection;
   @override
   State<CustomDropdownAlgorithm> createState() =>
       _CustomDropdownAlgorithmState();
@@ -17,12 +19,19 @@ class CustomDropdownAlgorithm extends StatefulWidget {
 class _CustomDropdownAlgorithmState extends State<CustomDropdownAlgorithm> {
   final TextEditingController algoirthmController = TextEditingController();
   AlgorithmLabel? selectedAlgorithm;
+
+  @override
+  void initState() {
+    super.initState();
+    selectedAlgorithm = widget.initialSelection;
+  }
+
   @override
   Widget build(BuildContext context) {
     return DropdownMenu<AlgorithmLabel>(
       width: Get.width,
       expandedInsets: const EdgeInsets.symmetric(horizontal: 24.0),
-      initialSelection: AlgorithmLabel.statistik,
+      initialSelection: selectedAlgorithm,
       controller: algoirthmController,
       label: const Text("Algoritma"),
       onSelected: (AlgorithmLabel? label) {
