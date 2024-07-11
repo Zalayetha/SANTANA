@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:sistem_analisis_teks_bencana/widget/colors.dart';
@@ -22,6 +23,9 @@ TextTheme createTextTheme(
 
 Color switchColor(String color, String algoritma) {
   Color? result;
+  if (kDebugMode) {
+    debugPrint("algoritma : $algoritma");
+  }
   if (algoritma == "Statistik") {
     switch (color) {
       case 'B-Bencana':

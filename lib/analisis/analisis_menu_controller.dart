@@ -6,7 +6,6 @@ import 'package:sistem_analisis_teks_bencana/repo/repository.dart';
 class AnalisisMenuController extends GetxController {
   final repo = Repository();
   final Rx<AnalisisResponse?> result = Rx<AnalisisResponse?>(null);
-  final Rx<AnalisisResponse?> resultRule = Rx<AnalisisResponse?>(null);
   final RxBool isLoading = false.obs;
   final RxList<String> labelList = <String>[].obs;
   final RxString selectedAlgorithm = "".obs;
@@ -46,13 +45,13 @@ class AnalisisMenuController extends GetxController {
       isLoading.value = true;
       AnalisisResponse? data = await repo.getClassifyRule(teks);
       if (data != null) {
-        resultRule.value = data;
+        result.value = data;
         if (kDebugMode) {
-          print(resultRule.value?.zresult?.first.label);
+          print(result.value?.zresult?.first.label);
         }
-        getLabel(resultRule.value);
+        getLabel(result.value);
         if (kDebugMode) {
-          debugPrint(resultRule.value!.zresult?[0].teks ?? "");
+          debugPrint(result.value!.zresult?[0].teks ?? "");
         }
       } else {
         if (kDebugMode) {
