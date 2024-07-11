@@ -22,9 +22,14 @@ class AnalisisMenuController extends GetxController {
       AnalisisResponse? data = await repo.getClassifyStatistic(teks);
       if (data != null) {
         result.value = data;
-        getLabel(result.value);
-        if (kDebugMode) {
-          debugPrint(result.value!.zresult?[0].teks ?? "");
+        if (data.zresult?.isNotEmpty ?? false) {
+          if (kDebugMode) {
+            print(result.value?.zresult?.first.label);
+          }
+          if (kDebugMode) {
+            debugPrint(result.value!.zresult?[0].teks ?? "");
+          }
+          getLabel(result.value);
         }
       } else {
         if (kDebugMode) {
@@ -46,12 +51,15 @@ class AnalisisMenuController extends GetxController {
       AnalisisResponse? data = await repo.getClassifyRule(teks);
       if (data != null) {
         result.value = data;
-        if (kDebugMode) {
-          print(result.value?.zresult?.first.label);
-        }
-        getLabel(result.value);
-        if (kDebugMode) {
-          debugPrint(result.value!.zresult?[0].teks ?? "");
+
+        if (data.zresult?.isNotEmpty ?? false) {
+          if (kDebugMode) {
+            print(result.value?.zresult?.first.label);
+          }
+          if (kDebugMode) {
+            debugPrint(result.value!.zresult?[0].teks ?? "");
+          }
+          getLabel(result.value);
         }
       } else {
         if (kDebugMode) {

@@ -12,10 +12,14 @@ class AnalisisMenu extends StatelessWidget {
   final AnalisisMenuController _analisisMenuController =
       Get.put(AnalisisMenuController());
   final TextEditingController _textEditingController = TextEditingController();
-
   // function to handle algorithm value from dropdown
   void _handleAlgorithmSelected(AlgorithmLabel label) {
+    _analisisMenuController.isLoading.value = true;
     _analisisMenuController.selectedAlgorithm.value = label.label;
+    Future.delayed(const Duration(seconds: 3), () {
+      _analisisMenuController.result.value = null;
+      _analisisMenuController.isLoading.value = false;
+    });
   }
 
   @override
@@ -62,6 +66,7 @@ class AnalisisMenu extends StatelessWidget {
                 child: Row(
                   children: [
                     Expanded(
+                      flex: 1,
                       child: ElevatedButton(
                           onPressed: () async {
                             debugPrint(_analisisMenuController
@@ -120,28 +125,23 @@ class AnalisisMenu extends StatelessWidget {
                                 shape: const OutlineInputBorder(),
                                 child: Padding(
                                     padding: const EdgeInsets.all(8.0),
-                                    child: Expanded(
-                                        child: RichText(
-                                            text: TextSpan(
-                                                children: _analisisMenuController
-                                                            .result.value ==
-                                                        null
-                                                    ? [
-                                                        const TextSpan(
-                                                            text: "-")
-                                                      ]
-                                                    : _analisisMenuController
-                                                        .result.value?.zresult
-                                                        ?.map((e) => TextSpan(
-                                                            text: "${e.teks} ",
-                                                            style: TextStyle(
-                                                                color: switchColor(
-                                                                    e.label ??
-                                                                        "-",
-                                                                    _analisisMenuController
-                                                                        .selectedAlgorithm
-                                                                        .value))))
-                                                        .toList())))),
+                                    child: RichText(
+                                        text: TextSpan(
+                                            children: _analisisMenuController
+                                                        .result.value ==
+                                                    null
+                                                ? [const TextSpan(text: "-")]
+                                                : _analisisMenuController
+                                                    .result.value?.zresult
+                                                    ?.map((e) => TextSpan(
+                                                        text: "${e.teks} ",
+                                                        style: TextStyle(
+                                                            color: switchColor(
+                                                                e.label ?? "-",
+                                                                _analisisMenuController
+                                                                    .selectedAlgorithm
+                                                                    .value))))
+                                                    .toList()))),
                               ),
                             ),
                             const SizedBox(
