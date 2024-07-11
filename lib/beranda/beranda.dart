@@ -50,13 +50,12 @@ class Beranda extends StatelessWidget {
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.start,
                             children: [
-                              CircleAvatar(
-                                  backgroundImage: AssetImage(
-                                      "assets/Logo-Universitas-Budi-Luhur-Square.png")),
-                              SizedBox(
-                                width: 8,
+                              Expanded(
+                                child: Align(
+                                    alignment: Alignment.center,
+                                    child: Text(
+                                        " Mohammad Zaghy Zalayetha Sofjan")),
                               ),
-                              Text("Mohammad Zaghy Zalayetha Sofjan"),
                             ],
                           ),
                         ),
@@ -68,13 +67,10 @@ class Beranda extends StatelessWidget {
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.start,
                             children: [
-                              CircleAvatar(
-                                  backgroundImage: AssetImage(
-                                      "assets/Logo-Universitas-Budi-Luhur-Square.png")),
-                              SizedBox(
-                                width: 8,
-                              ),
-                              Text("Diva Restu Anggara Putra"),
+                              Expanded(
+                                  child: Align(
+                                      alignment: Alignment.center,
+                                      child: Text("Diva Restu Anggara Putra"))),
                             ],
                           ),
                         ),
@@ -86,13 +82,10 @@ class Beranda extends StatelessWidget {
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.start,
                             children: [
-                              CircleAvatar(
-                                  backgroundImage: AssetImage(
-                                      "assets/Logo-Universitas-Budi-Luhur-Square.png")),
-                              SizedBox(
-                                width: 8,
-                              ),
-                              Text("Wira Yudha Mahardhika"),
+                              Expanded(
+                                  child: Align(
+                                      alignment: Alignment.center,
+                                      child: Text("Wira Yudha Mahardhika"))),
                             ],
                           ),
                         ),

@@ -1,20 +1,20 @@
 import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
+import 'package:sistem_analisis_teks_bencana/analisis/algorithm_label.dart';
 import 'package:sistem_analisis_teks_bencana/analisis/analisis_response.dart';
 import 'package:sistem_analisis_teks_bencana/repo/repository.dart';
 
 class AnalisisMenuController extends GetxController {
   final repo = Repository();
   final Rx<AnalisisResponse?> result = Rx<AnalisisResponse?>(null);
-  final Rx<AnalisisResponse?> resultRule = Rx<AnalisisResponse?>(null);
   final RxBool isLoading = false.obs;
   final RxList<String> labelList = <String>[].obs;
-  final RxString selectedAlgorithm = "".obs;
+  final Rx<AlgorithmLabel?> selectedAlgorithm = Rx<AlgorithmLabel?>(null);
 
   @override
   void onInit() {
     super.onInit();
-    selectedAlgorithm.value = "Statistik";
+    selectedAlgorithm.value = AlgorithmLabel.statistik;
   }
 
   analisisStatistik(String teks) async {
@@ -23,9 +23,14 @@ class AnalisisMenuController extends GetxController {
       AnalisisResponse? data = await repo.getClassifyStatistic(teks);
       if (data != null) {
         result.value = data;
-        getLabel(result.value);
-        if (kDebugMode) {
-          debugPrint(result.value!.zresult?[0].teks ?? "");
+        if (data.zresult?.isNotEmpty ?? false) {
+          if (kDebugMode) {
+            print(result.value?.zresult?.first.label);
+          }
+          if (kDebugMode) {
+            debugPrint(result.value!.zresult?[0].teks ?? "");
+          }
+          getLabel(result.value);
         }
       } else {
         if (kDebugMode) {
@@ -46,10 +51,16 @@ class AnalisisMenuController extends GetxController {
       isLoading.value = true;
       AnalisisResponse? data = await repo.getClassifyRule(teks);
       if (data != null) {
-        resultRule.value = data;
-        getLabel(resultRule.value);
-        if (kDebugMode) {
-          debugPrint(resultRule.value!.zresult?[0].teks ?? "");
+        result.value = data;
+
+        if (data.zresult?.isNotEmpty ?? false) {
+          if (kDebugMode) {
+            print(result.value?.zresult?.first.label);
+          }
+          if (kDebugMode) {
+            debugPrint(result.value!.zresult?[0].teks ?? "");
+          }
+          getLabel(result.value);
         }
       } else {
         if (kDebugMode) {
@@ -70,7 +81,9 @@ class AnalisisMenuController extends GetxController {
     for (var data in label.zresult ?? []) {
       tempLabel.add(data.label);
     }
-
+    if (kDebugMode) {
+      debugPrint(tempLabel.toString());
+    }
     labelList.value = tempLabel.toSet().toList();
   }
 }
