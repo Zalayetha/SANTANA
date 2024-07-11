@@ -38,6 +38,7 @@ dependencies:
   http: ^1.2.1
   google_fonts: ^6.2.1
   loading_animation_widget: ^1.2.1
+  flutter_launcher_icons: ^0.13.1
 
 dev_dependencies:
   flutter_test:
@@ -89,3 +90,8 @@ flutter:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
+flutter_launcher_icons:
+  android: "launcher_icon"
+  ios: true
+  image_path: "assets/Logo-Universitas-Budi-Luhur-Square.png"
+  min_sdk_android: 21 # android min sdk min:16, default 21
