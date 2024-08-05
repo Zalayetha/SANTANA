@@ -12,6 +12,8 @@ class ApiService {
       requestUrl = "http://10.0.2.2:5000/statistic?$queryString";
     } else if (Platform.isIOS) {
       requestUrl = "http://127.0.0.1:5000/statistic?$queryString";
+    } else {
+      requestUrl = "http://127.0.0.1:5000/statistic?$queryString";
     }
     var response = await http.get(Uri.parse(requestUrl));
     if (response.statusCode == 200) {
@@ -29,6 +31,8 @@ class ApiService {
     if (Platform.isAndroid) {
       requestUrl = "http://10.0.2.2:5000/rule?$queryString";
     } else if (Platform.isIOS) {
+      requestUrl = "http://127.0.0.1:5000/rule?$queryString";
+    } else {
       requestUrl = "http://127.0.0.1:5000/rule?$queryString";
     }
     var response = await http.get(Uri.parse(requestUrl));
