@@ -25,10 +25,10 @@ class AnalisisMenuController extends GetxController {
         result.value = data;
         if (data.zresult?.isNotEmpty ?? false) {
           if (kDebugMode) {
-            print(result.value?.zresult?.first.label);
+            print(result.value?.zresult?.first.first.label);
           }
           if (kDebugMode) {
-            debugPrint(result.value!.zresult?[0].teks ?? "");
+            debugPrint(result.value!.zresult?.first.first.teks);
           }
           getLabel(result.value);
         }
@@ -55,10 +55,10 @@ class AnalisisMenuController extends GetxController {
 
         if (data.zresult?.isNotEmpty ?? false) {
           if (kDebugMode) {
-            print(result.value?.zresult?.first.label);
+            print(result.value?.zresult?.first.first.label);
           }
           if (kDebugMode) {
-            debugPrint(result.value!.zresult?[0].teks ?? "");
+            debugPrint(result.value!.zresult?.first.first.teks ?? "");
           }
           getLabel(result.value);
         }
@@ -76,10 +76,12 @@ class AnalisisMenuController extends GetxController {
     }
   }
 
-  getLabel(label) {
+  getLabel(AnalisisResponse? label) {
     List<String> tempLabel = [];
-    for (var data in label.zresult ?? []) {
-      tempLabel.add(data.label);
+    for (var data in label?.zresult ?? []) {
+      for (var dt in data) {
+        tempLabel.add(dt.label);
+      }
     }
     if (kDebugMode) {
       debugPrint(tempLabel.toString());

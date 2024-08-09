@@ -11,7 +11,7 @@ String analisisResponseToJson(AnalisisResponse data) =>
     json.encode(data.toJson());
 
 class AnalisisResponse {
-  List<Zresult>? zresult;
+  List<List<Zresult>>? zresult;
 
   AnalisisResponse({
     this.zresult,
@@ -21,33 +21,38 @@ class AnalisisResponse {
       AnalisisResponse(
         zresult: json["zresult"] == null
             ? []
-            : List<Zresult>.from(
-                json["zresult"]!.map((x) => Zresult.fromJson(x))),
+            : List<List<Zresult>>.from(json["zresult"]!.map(
+                (x) => List<Zresult>.from(x.map((x) => Zresult.fromJson(x))))),
       );
 
   Map<String, dynamic> toJson() => {
         "zresult": zresult == null
             ? []
-            : List<dynamic>.from(zresult!.map((x) => x.toJson())),
+            : List<dynamic>.from(zresult!
+                .map((x) => List<dynamic>.from(x.map((x) => x.toJson())))),
       };
 }
 
 class Zresult {
-  String? teks;
   String? label;
+  String? probabilitas;
+  String? teks;
 
   Zresult({
-    this.teks,
     this.label,
+    this.probabilitas,
+    this.teks,
   });
 
   factory Zresult.fromJson(Map<String, dynamic> json) => Zresult(
-        teks: json["teks"],
         label: json["label"],
+        probabilitas: json["probabilitas"],
+        teks: json["teks"],
       );
 
   Map<String, dynamic> toJson() => {
-        "teks": teks,
         "label": label,
+        "probabilitas": probabilitas,
+        "teks": teks,
       };
 }
