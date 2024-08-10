@@ -47,7 +47,7 @@ Color switchColor(String color, AlgorithmLabel algoritma) {
       case 'I-Dampak':
         result = appColorMap[AppColors.iDampak];
       default:
-        result = appColorMap[AppColors.iDampak];
+        result = const Color(0xFF698474);
     }
   } else if (algoritma == AlgorithmLabel.aturan) {
     switch (color) {
@@ -61,9 +61,9 @@ Color switchColor(String color, AlgorithmLabel algoritma) {
       case "Dampak":
         result = appColorMap[AppColors.bDampak];
       default:
-        result = Colors.black;
+        result = const Color(0xFF698474);
     }
   }
 
-  return result ?? Colors.black;
+  return result ?? const Color(0xFF698474);
 }

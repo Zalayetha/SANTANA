@@ -19,5 +19,5 @@ Map<AppColors, Color> appColorMap = {
   AppColors.bWaktu: const Color.fromARGB(255, 94, 11, 6),
   AppColors.iWaktu: const Color.fromARGB(255, 190, 37, 180),
   AppColors.bDampak: const Color.fromARGB(255, 29, 203, 116),
-  AppColors.iDampak: const Color.fromARGB(255, 89, 35, 48),
+  AppColors.iDampak: const Color(0xFFFF8343),
 };
